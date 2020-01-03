@@ -48,11 +48,15 @@ namespace Meal_Service
             agi.HtmlDocument doc = new agi.HtmlDocument();
             doc.LoadHtml(html);
 
-
             string json = doc.Text; // json 문자열이 담긴 doc를 string 변수에 저장.
 
             JObject jobj = JObject.Parse(json); // 받아온 데이터를 객체화.
 
+            // 만약 급식정보가 존재하지 않을 경우 현재 실행되고 있는 함수 return
+            if (jobj["mealServiceDietInfo"] == null)
+            {
+                return;
+            }
 
             // 급식이 없는 경우 전날, 당일, 다음날 
             IsMealNone(jobj, Mealtype.NONEALL);
@@ -61,12 +65,6 @@ namespace Meal_Service
             string before_process_todays_meal = string.Empty; // 가공되기전의 급식 정보들
             string temp_meal = string.Empty; // 가공하기위해 임시적으로 담아두는 변수.
             string complete_process_todays_meal = string.Empty; // 가공이 완료된 급식 정보를 담을 변수.
-
-            // 만약 급식정보가 존재하지 않을 경우 현재 실행되고 있는 함수 return
-            if(jobj["mealServiceDietInfo"] == null)
-            {
-                return;
-            }
 
             for (var i = 0; i < Convert.ToInt32(jobj["mealServiceDietInfo"][0]["head"][0]["list_total_count"]); i += 1)
             {
