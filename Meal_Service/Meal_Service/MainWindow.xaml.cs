@@ -53,7 +53,7 @@ namespace Meal_Service
             JObject jobj = JObject.Parse(json); // 받아온 데이터를 객체화.
 
             // 만약 급식정보가 존재하지 않을 경우 현재 실행되고 있는 함수 return
-            if (jobj["mealServiceDietInfo"] == null)
+            if(jobj["mealServiceDietInfo"] == null)
             {
                 return;
             }
