@@ -42,5 +42,7 @@
 
 <iframe width="640" height="360" src="https://www.youtube.com/watch?v=a50LQsNQcq0" frameborder="0" gesture="media" allowfullscreen=""></iframe>
 
+[![Watch the video](시연 영상)](https://www.youtube.com/watch?v=a50LQsNQcq0)
+
 ## Meals-Porgram in WPF Detailed Explanation
 - 네이버 블로그 [WPF로 제작한 급식 정보 프로그램 자세한 설명]()  
