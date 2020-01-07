@@ -30,7 +30,7 @@
 
 - 당일 점심 급식 정보
 
-<img src="https://user-images.githubusercontent.com/48943501/71861441-c2d72d00-3139-11ea-9f68-6a7f7ab0b3e6.PNG" width="80%"></img>
+<img src="https://user-images.githubusercontent.com/48943501/71875159-009e7a80-3167-11ea-9226-21a83755ee70.PNG" width="80%"></img>
 
 - 다음날 저녁 급식 정보
 
