@@ -36,6 +36,8 @@
 
 <img src="https://user-images.githubusercontent.com/48943501/71861462-ca96d180-3139-11ea-81c0-b511a0fd9633.PNG" width="80%"></img>
 
+[![Watch the video]](https://www.youtube.com/embed/a50LQsNQcq0)
+
 - ※ 이 프로그램에 활용한 디자인 : [C# WPF Material Design UI: Animated Menu](https://www.youtube.com/watch?v=yrnE2Aah4B4)
 
 ## Meals-Program 시연 영상
