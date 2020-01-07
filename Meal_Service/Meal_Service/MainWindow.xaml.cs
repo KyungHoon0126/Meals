@@ -35,12 +35,10 @@ namespace Meal_Service
         {
             nowdate.Text = DateTime.Now.ToString(string.Format("yyyy년 MM월 dd일 ddd요일 급식 정보", ComDef.cultures));
         }
-
-        // 급식 정보 로딩
         public void LoadMealDataAsync(int meal_option, string select_date, string dateInfo)
         {
             WebClient wc = new WebClient();
-            wc.Headers["Content-Type"] = "application/json"; // Headers에 Content-Type을 json 형식으로 받겠다는 의미.
+            wc.Headers["Content-Type"] = "application/json"; 
             wc.Encoding = Encoding.UTF8;
 
             string html = wc.DownloadString("데이터를 가져오는 파싱 주소");
@@ -48,31 +46,28 @@ namespace Meal_Service
             agi.HtmlDocument doc = new agi.HtmlDocument();
             doc.LoadHtml(html);
 
-            string json = doc.Text; // json 문자열이 담긴 doc를 string 변수에 저장.
+            string json = doc.Text;
 
-            JObject jobj = JObject.Parse(json); // 받아온 데이터를 객체화.
+            JObject jobj = JObject.Parse(json);
 
-            // 만약 급식정보가 존재하지 않을 경우 현재 실행되고 있는 함수 return
             if(jobj["mealServiceDietInfo"] == null)
             {
                 return;
             }
 
-            // 급식이 없는 경우 전날, 당일, 다음날 
             IsMealNone(jobj, Mealtype.NONEALL);
 
-
-            string before_process_todays_meal = string.Empty; // 가공되기전의 급식 정보들
-            string temp_meal = string.Empty; // 가공하기위해 임시적으로 담아두는 변수.
-            string complete_process_todays_meal = string.Empty; // 가공이 완료된 급식 정보를 담을 변수.
+            string before_process_todays_meal = string.Empty;
+            string temp_meal = string.Empty; 
+            string complete_process_todays_meal = string.Empty;
 
             for (var i = 0; i < Convert.ToInt32(jobj["mealServiceDietInfo"][0]["head"][0]["list_total_count"]); i += 1)
             {
                 before_process_todays_meal = jobj["mealServiceDietInfo"][1]["row"][i]["DDISH_NM"].ToString();
 
-                temp_meal = Regex.Replace(before_process_todays_meal, @"\d", ""); // Regex.Replace(, , ) : 숫자를 추출해서 변경 ※ 문자도 마찬가지 방법. ※
-                temp_meal = temp_meal.Replace("<br/>", " "); // <br/> 문자를 제거
-                complete_process_todays_meal = complete_process_todays_meal + temp_meal + Environment.NewLine + Environment.NewLine;  // <br/>를 제거한 급식 정보를 저장.
+                temp_meal = Regex.Replace(before_process_todays_meal, @"\d", ""); 
+                temp_meal = temp_meal.Replace("<br/>", " "); 
+                complete_process_todays_meal = complete_process_todays_meal + temp_meal + Environment.NewLine + Environment.NewLine;
             }
 
             for (int i = 0; i < complete_process_todays_meal.Length; i++)
@@ -92,20 +87,15 @@ namespace Meal_Service
 
             complete_process_todays_meal = complete_process_todays_meal.Replace(".", "");
 
-            // 아침, 점심, 저녁 구분
             string[] split_meal_info = complete_process_todays_meal.Split(new string[] { "\n" }, StringSplitOptions.None);
 
             IsMealNone(jobj, Mealtype.NONEBREAKFAST);
             IsMealNone(jobj, Mealtype.NONELUNCH);
             IsMealNone(jobj, Mealtype.NONEDINNER);
 
-
-            // 아침 메뉴 구분
-            string[] re_split_breakfast__info = split_meal_info[meal_option].Split(new string[] { " " }, StringSplitOptions.None); // 아침
-            // 점심 메뉴 구분
-            string[] re_split_lunch__info = split_meal_info[meal_option].Split(new string[] { " " }, StringSplitOptions.None); // 점심
-            // 저녁 메뉴 구분
-            string[] re_split_dinner__info = split_meal_info[meal_option].Split(new string[] { " " }, StringSplitOptions.None); // 저녁
+            string[] re_split_breakfast__info = split_meal_info[meal_option].Split(new string[] { " " }, StringSplitOptions.None);
+            string[] re_split_lunch__info = split_meal_info[meal_option].Split(new string[] { " " }, StringSplitOptions.None); 
+            string[] re_split_dinner__info = split_meal_info[meal_option].Split(new string[] { " " }, StringSplitOptions.None); 
 
 
             #region 급식 정보 나타내기
@@ -216,8 +206,6 @@ namespace Meal_Service
             }
         }
 
-
-        // 급식정보가 모두 없을 때.
         private void IsMealNoneAll()
         {
             tbBreakFast.Text = ComDef.meal_None;
@@ -225,46 +213,37 @@ namespace Meal_Service
             tbDinner.Text = ComDef.meal_None;
             mealTitle.Text = string.Empty;
         }
-        // 아침 급식정보가 없을 때
         private void IsMealNoneBreakFast()
         {
             tbBreakFast.Text = ComDef.meal_None;
             mealTitle.Text = string.Empty;
         }
-        // 점심 급식정보가 없을 때
         private void IsMealNoneLunch()
         {
             tbLunch.Text = ComDef.meal_None;
             mealTitle.Text = string.Empty;
         }
-        // 저녁 급식정보가 없을 때
         private void IsMealNoneDinner()
         {
             tbDinner.Text = ComDef.meal_None;
             mealTitle.Text = string.Empty;
         }
 
-
-        // 종료 버튼 이벤트
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
-        // 메뉴 버튼 열기 이벤트
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
         {
             ButtonOpenMenu.Visibility = Visibility.Collapsed;
             ButtonCloseMenu.Visibility = Visibility.Visible;
         }
-        // 메뉴 버튼 종료 이벤트
         private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
         {
             ButtonOpenMenu.Visibility = Visibility.Visible;
             ButtonCloseMenu.Visibility = Visibility.Collapsed;
         }
 
-
-        // 메뉴, ListView 아침, 점심, 저녁 클릭시 발생하는 이벤트(오늘 날짜)
         private void breakfast_Selected(object sender, RoutedEventArgs e)
         {
             LoadMealDataAsync(0, ComDef.todays_date, ComDef.idx2);
@@ -278,8 +257,6 @@ namespace Meal_Service
             LoadMealDataAsync(4, ComDef.todays_date, ComDef.idx2);
         }
 
-
-        // 전날 급식 정보 로딩
         private void Btn_BeforeDay_Meal_Info_Click(object sender, RoutedEventArgs e)
         {
             ComDef.todays_date = ComDef.before_day_date;
@@ -292,7 +269,6 @@ namespace Meal_Service
             LoadMealDataAsync(4, ComDef.todays_date, ComDef.idx2);
         }
 
-        // 오늘 급식 정보 로딩  
         private void Btn_Today_Meal_Info_Click(object sender, RoutedEventArgs e)
         {
             ComDef.todays_date = ComDef.return_todays_date;
@@ -305,7 +281,6 @@ namespace Meal_Service
             LoadMealDataAsync(4, ComDef.todays_date, ComDef.idx2);
         }
 
-        // 다음날 급식 정보 로딩
         private void Btn_NextDay_Meal_Info_Click(object sender, RoutedEventArgs e)
         {
             ComDef.todays_date = ComDef.next_day_date;
