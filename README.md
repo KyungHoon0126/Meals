@@ -10,7 +10,22 @@
 
 ## Stack
 ||Window|설명|
-|:------:|:---:|:---:|
+|:------:|:---:|
 |Development People|김경훈|
 |Development Language|C#|
 |Development Tool|WPF, Visual Studio 2019|
+
+## UI / UX
+- 메인 화면
+<img src="https://user-images.githubusercontent.com/48943501/71861421-adfa9980-3139-11ea-97e4-348d661ed00e.PNG" width="80%"></img>
+- 메뉴 버튼 클릭 후 이동 화면
+<img src="https://user-images.githubusercontent.com/48943501/71861408-a3400480-3139-11ea-88b9-b6800472646d.PNG" width="80%"></img>
+- 전날 아침 급식 정보
+<img src="https://user-images.githubusercontent.com/48943501/71861429-b8b52e80-3139-11ea-8037-6af7ba0afb26.PNG" width="80%"></img>
+- 당일 점심 급식 정보
+<img src="https://user-images.githubusercontent.com/48943501/71861441-c2d72d00-3139-11ea-9f68-6a7f7ab0b3e6.PNG" width="80%"></img>
+- 다음날 저녁 급식 정보
+<img src="https://user-images.githubusercontent.com/48943501/71861462-ca96d180-3139-11ea-81c0-b511a0fd9633.PNG" width="80%"></img>
+
+## Meals-Porgram in WPF Detailed Explanation
+- 네이버 블로그 [WPF로 제작한 급식 정보 프로그램 자세한 설명]()
