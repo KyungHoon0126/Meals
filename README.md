@@ -40,10 +40,7 @@
 
 ## Meals-Program 시연 영상
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/a50LQsNQcq0/0.jpg)](https://www.youtube.com/watch?v=a50LQsNQcq0)
-
-[![Video Label](http://img.youtube.com/vi/uLR1RNqJ1Mw/0.jpg)](https://youtu.be/uLR1RNqJ1Mw?t=0s) Video Label
-
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/a50LQsNQcq0/0.jpg width="80%")](https://www.youtube.com/watch?v=a50LQsNQcq0)
 
 ## Meals-Porgram in WPF Detailed Explanation
 - 네이버 블로그 [WPF로 제작한 급식 정보 프로그램 자세한 설명]()  
