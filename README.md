@@ -9,7 +9,7 @@
 - 다음날 아침, 점심, 저녁 급식 정보 제공
 
 ## Stack
-||Window|설명|
+||Window|
 |:------:|:---:|
 |Development People|김경훈|
 |Development Language|C#|
